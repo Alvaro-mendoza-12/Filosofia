@@ -529,3 +529,6 @@ const MODULOS_TEORIA = [
     ]
   }
 ];
+
+if (typeof window !== 'undefined') window.MODULOS_TEORIA = MODULOS_TEORIA;
+if (typeof globalThis !== 'undefined') globalThis.MODULOS_TEORIA = MODULOS_TEORIA;

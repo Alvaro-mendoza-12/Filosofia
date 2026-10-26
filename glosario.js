@@ -373,3 +373,6 @@ const GLOSARIO_TERMINOS = [
     "consejoExamen": "'Inmóvil' NO significa muerto o paralizado: significa libre de imperfección de cambio, pues posee la plenitud de la vida infinita en Acto Puro."
   }
 ];
+
+if (typeof window !== 'undefined') window.GLOSARIO_TERMINOS = GLOSARIO_TERMINOS;
+if (typeof globalThis !== 'undefined') globalThis.GLOSARIO_TERMINOS = GLOSARIO_TERMINOS;

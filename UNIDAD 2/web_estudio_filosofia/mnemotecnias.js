@@ -275,3 +275,6 @@ const MNEMOTECNIAS_DATA = {
     }
   ]
 };
+
+if (typeof window !== 'undefined') window.MNEMOTECNIAS_DATA = MNEMOTECNIAS_DATA;
+if (typeof globalThis !== 'undefined') globalThis.MNEMOTECNIAS_DATA = MNEMOTECNIAS_DATA;

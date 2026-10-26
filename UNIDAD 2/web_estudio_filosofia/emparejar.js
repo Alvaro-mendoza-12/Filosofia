@@ -188,3 +188,6 @@ const EMPAREJAR_DATA = {
     }
   ]
 };
+
+if (typeof window !== 'undefined') window.EMPAREJAR_DATA = EMPAREJAR_DATA;
+if (typeof globalThis !== 'undefined') globalThis.EMPAREJAR_DATA = EMPAREJAR_DATA;

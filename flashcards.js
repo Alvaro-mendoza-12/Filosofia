@@ -481,3 +481,6 @@ const BANCO_FLASHCARDS = [
     "mnemotecnia": "RECHAZO AL ONTOLOGISMO: Pensar en oro no te llena los bolsillos de oro."
   }
 ];
+
+if (typeof window !== 'undefined') window.BANCO_FLASHCARDS = BANCO_FLASHCARDS;
+if (typeof globalThis !== 'undefined') globalThis.BANCO_FLASHCARDS = BANCO_FLASHCARDS;

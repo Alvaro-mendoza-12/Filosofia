@@ -7326,3 +7326,12 @@ const BANCO_PREGUNTAS = [
     "explicacionAlternativa": "Es la base del suelo: puedes construir un rascacielos sobre el suelo, pero no puedes poner un suelo debajo del mismo suelo."
   }
 ];
+
+if (typeof window !== 'undefined') {
+  window.EXAMENES_INFO = EXAMENES_INFO;
+  window.BANCO_PREGUNTAS = BANCO_PREGUNTAS;
+}
+if (typeof globalThis !== 'undefined') {
+  globalThis.EXAMENES_INFO = EXAMENES_INFO;
+  globalThis.BANCO_PREGUNTAS = BANCO_PREGUNTAS;
+}

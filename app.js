@@ -53,6 +53,16 @@
   };
 
   // --- SÍNTESIS DE AUDIO (Web Audio API: Cero dependencias externas) ---
+  
+  // --- ACCESORES SEGUROS DE DATOS GLOBALES ---
+  const getModulosTeoria = () => (typeof MODULOS_TEORIA !== 'undefined' ? MODULOS_TEORIA : (typeof window !== 'undefined' && window.MODULOS_TEORIA ? window.MODULOS_TEORIA : (typeof globalThis !== 'undefined' && globalThis.MODULOS_TEORIA ? globalThis.MODULOS_TEORIA : [])));
+  const getGlosarioTerminos = () => (typeof GLOSARIO_TERMINOS !== 'undefined' ? GLOSARIO_TERMINOS : (typeof window !== 'undefined' && window.GLOSARIO_TERMINOS ? window.GLOSARIO_TERMINOS : (typeof globalThis !== 'undefined' && globalThis.GLOSARIO_TERMINOS ? globalThis.GLOSARIO_TERMINOS : [])));
+  const getBancoFlashcards = () => (typeof BANCO_FLASHCARDS !== 'undefined' ? BANCO_FLASHCARDS : (typeof window !== 'undefined' && window.BANCO_FLASHCARDS ? window.BANCO_FLASHCARDS : (typeof globalThis !== 'undefined' && globalThis.BANCO_FLASHCARDS ? globalThis.BANCO_FLASHCARDS : [])));
+  const getMnemotecniasData = () => (typeof MNEMOTECNIAS_DATA !== 'undefined' ? MNEMOTECNIAS_DATA : (typeof window !== 'undefined' && window.MNEMOTECNIAS_DATA ? window.MNEMOTECNIAS_DATA : (typeof globalThis !== 'undefined' && globalThis.MNEMOTECNIAS_DATA ? globalThis.MNEMOTECNIAS_DATA : null)));
+  const getEmparejarData = () => (typeof EMPAREJAR_DATA !== 'undefined' ? EMPAREJAR_DATA : (typeof window !== 'undefined' && window.EMPAREJAR_DATA ? window.EMPAREJAR_DATA : (typeof globalThis !== 'undefined' && globalThis.EMPAREJAR_DATA ? globalThis.EMPAREJAR_DATA : null)));
+  const getExamenesInfo = () => (typeof EXAMENES_INFO !== 'undefined' ? EXAMENES_INFO : (typeof window !== 'undefined' && window.EXAMENES_INFO ? window.EXAMENES_INFO : (typeof globalThis !== 'undefined' && globalThis.EXAMENES_INFO ? globalThis.EXAMENES_INFO : [])));
+  const getBancoPreguntas = () => (typeof BANCO_PREGUNTAS !== 'undefined' ? BANCO_PREGUNTAS : (typeof window !== 'undefined' && window.BANCO_PREGUNTAS ? window.BANCO_PREGUNTAS : (typeof globalThis !== 'undefined' && globalThis.BANCO_PREGUNTAS ? globalThis.BANCO_PREGUNTAS : [])));
+
   const SoundEngine = {
     ctx: null,
     init() {
@@ -325,9 +335,10 @@
   // ==========================================================================
   function initTeoria() {
     const navContainer = document.getElementById('teoria-modules-nav');
-    if (!navContainer || !window.MODULOS_TEORIA) return;
+    const mods = getModulosTeoria();
+    if (!navContainer || !mods.length) return;
 
-    navContainer.innerHTML = window.MODULOS_TEORIA.map((mod, idx) => `
+    navContainer.innerHTML = mods.map((mod, idx) => `
       <button class="module-pill-btn ${idx === 0 ? 'active' : ''}" data-modid="${mod.id}" onclick="window.FiloApp.selectTeoriaModule('${mod.id}')">
         <span class="mod-tag">Módulo ${mod.numero}</span>
         <span>${mod.titulo.split(':')[1] || mod.titulo}</span>
@@ -348,9 +359,10 @@
 
   function renderTeoriaModule(modId) {
     const container = document.getElementById('teoria-chapters-container');
-    if (!container || !window.MODULOS_TEORIA) return;
+    const mods = getModulosTeoria();
+    if (!container || !mods.length) return;
 
-    const modulo = window.MODULOS_TEORIA.find(m => m.id === modId) || window.MODULOS_TEORIA[0];
+    const modulo = mods.find(m => m.id === modId) || mods[0];
 
     let html = `
       <div style="margin-bottom: 1.5rem; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
@@ -415,7 +427,8 @@
   // ==========================================================================
   function initGlosario() {
     const filtersContainer = document.getElementById('glosario-filter-buttons');
-    if (!filtersContainer || !window.GLOSARIO_TERMINOS) return;
+    const termsAll = getGlosarioTerminos();
+    if (!filtersContainer || !termsAll.length) return;
 
     const categories = ['Todos', 'Metafísica Fundamental', 'Estructura del Ente', 'Causas y Principios', 'Teodicea y Conocimiento'];
 
@@ -439,9 +452,10 @@
 
   function renderGlosarioCards() {
     const grid = document.getElementById('glosario-cards-grid');
-    if (!grid || !window.GLOSARIO_TERMINOS) return;
+    const termsAll = getGlosarioTerminos();
+    if (!grid || !termsAll.length) return;
 
-    let terms = window.GLOSARIO_TERMINOS;
+    let terms = [...termsAll];
 
     // Filtro por categoría
     if (state.activeGlosarioFilter !== 'Todos') {
@@ -501,8 +515,9 @@
   // 4. FLASHCARDS 3D
   // ==========================================================================
   function initFlashcards() {
-    if (!window.BANCO_FLASHCARDS) return;
-    state.flashcards = [...window.BANCO_FLASHCARDS];
+    const bfc = getBancoFlashcards();
+    if (!bfc.length) return;
+    state.flashcards = [...bfc];
     state.fcFiltered = [...state.flashcards];
     state.fcIndex = 0;
     state.fcFlipped = false;
@@ -621,9 +636,10 @@
   // ==========================================================================
   function initEmparejar() {
     const navLevels = document.getElementById('match-levels-nav');
-    if (!navLevels || !window.EMPAREJAR_DATA) return;
+    const empData = getEmparejarData();
+    if (!navLevels || !empData) return;
 
-    navLevels.innerHTML = window.EMPAREJAR_DATA.niveles.map((lvl, idx) => `
+    navLevels.innerHTML = empData.niveles.map((lvl, idx) => `
       <button class="filter-btn ${idx === state.matchLevelIndex ? 'active' : ''}" onclick="window.FiloApp.startMatchLevel(${idx})">
         ${lvl.nombre.split(':')[0]}
       </button>
@@ -641,7 +657,7 @@
       btn.classList.toggle('active', idx === levelIdx);
     });
 
-    const level = window.EMPAREJAR_DATA.niveles[levelIdx];
+    const level = getEmparejarData().niveles[levelIdx];
     document.getElementById('match-level-title').textContent = level.nombre;
     document.getElementById('match-level-desc').textContent = level.descripcion;
 
@@ -712,11 +728,11 @@
       updateMatchStats();
 
       // Verificar si completó el nivel
-      const totalPairs = window.EMPAREJAR_DATA.niveles[state.matchLevelIndex].parejas.length;
+      const totalPairs = getEmparejarData().niveles[state.matchLevelIndex].parejas.length;
       if (state.matchedPairsCount === totalPairs) {
         SoundEngine.fanfare();
         setTimeout(() => {
-          alert(`🎉 ¡Excelente! Completaste el ${window.EMPAREJAR_DATA.niveles[state.matchLevelIndex].nombre} con éxito.`);
+          alert(`🎉 ¡Excelente! Completaste el ${getEmparejarData().niveles[state.matchLevelIndex].nombre} con éxito.`);
         }, 300);
       }
     } else {
@@ -737,7 +753,7 @@
   }
 
   function updateMatchStats() {
-    const totalPairs = window.EMPAREJAR_DATA.niveles[state.matchLevelIndex].parejas.length;
+    const totalPairs = getEmparejarData().niveles[state.matchLevelIndex].parejas.length;
     document.getElementById('match-score-display').textContent = `Aciertos: ${state.matchedPairsCount} / ${totalPairs}`;
     document.getElementById('match-errors-display').textContent = `Fallos: ${state.matchErrorsCount}`;
   }
@@ -746,8 +762,9 @@
   // 6. MNEMOTECNIAS Y TRAMPAS DE EXAMEN
   // ==========================================================================
   function initMnemotecnias() {
-    if (!window.MNEMOTECNIAS_DATA) return;
-    const { acronimos, palacio_memoria, trampas_examen } = window.MNEMOTECNIAS_DATA;
+    const mnData = getMnemotecniasData();
+    if (!mnData) return;
+    const { acronimos, palacio_memoria, trampas_examen } = mnData;
 
     // Render Acrónimos
     const acroGrid = document.getElementById('mnemo-acronyms-grid');
@@ -823,9 +840,10 @@
   // ==========================================================================
   function initExamenesHub() {
     const hubGrid = document.getElementById('exams-cards-grid');
-    if (!hubGrid || !window.EXAMENES_INFO) return;
+    const exInfo = getExamenesInfo();
+    if (!hubGrid || !exInfo.length) return;
 
-    hubGrid.innerHTML = window.EXAMENES_INFO.map(ex => {
+    hubGrid.innerHTML = exInfo.map(ex => {
       const prevScore = state.allExamScores[ex.numero];
       const scoreBadge = prevScore !== undefined
         ? `<span class="exam-card-score" style="color: ${prevScore >= 14 ? 'var(--success)' : 'var(--danger)'}">
@@ -856,7 +874,7 @@
 
   function startExam(examId) {
     state.currentExamId = examId;
-    state.examQuestions = window.BANCO_PREGUNTAS.filter(q => q.examen === examId);
+    state.examQuestions = getBancoPreguntas().filter(q => q.examen === examId);
     state.currentQuestionIndex = 0;
     state.userAnswers = {};
     state.examTimer = 0;
