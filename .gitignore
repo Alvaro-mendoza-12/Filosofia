@@ -1,3 +1,9 @@
 node_modules/
 package-lock.json
 *.log
+*.rar
+FILOSOFIA U2 U3/
+MATERIAL UNIDAD II/
+MATERIAL UNIDAD II (1)/
+__pycache__/
+*.pyc
