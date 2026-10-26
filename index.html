@@ -1,287 +1,458 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FiloMaster - Preparación Integral para Examen de Filosofía</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filosofía USAT - Plataforma Interactiva de Estudio (Unidad 2)</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- HEADER Y NAVEGACIÓN -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo-group">
-                <span class="logo-icon">🏛️</span>
-                <div>
-                    <h1 class="logo-title">FiloMaster <span class="badge-tag">USAT 2026</span></h1>
-                    <p class="logo-subtitle">Aprende todo el temario sin resúmenes vacíos • Preparación para el examen</p>
-                </div>
-            </div>
-            <nav class="nav-tabs" id="main-nav">
-                <button class="nav-btn active" data-target="view-teoria">
-                    <span class="nav-icon">📚</span> Teoría por Módulos
-                </button>
-                <button class="nav-btn" data-target="view-flashcards">
-                    <span class="nav-icon">🎴</span> Tarjetas & Trampas
-                </button>
-                <button class="nav-btn" data-target="view-examenes">
-                    <span class="nav-icon">📝</span> 20 Simuladores (400 Preguntas)
-                </button>
-                <button class="nav-btn" data-target="view-videos">
-                    <span class="nav-icon">🎬</span> Videoteca de Clase
-                </button>
-                <a href="UNIDAD 2/web_estudio_filosofia/index.html" class="nav-btn" style="text-decoration: none; background: linear-gradient(135deg, #4f46e5, #9333ea); color: white; font-weight: 700;">
-                    <span class="nav-icon">🏛️</span> UNIDAD 2 (Metafísica & Teodicea) ➡️
-                </a>
-            </nav>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand" onclick="window.FiloApp.switchView('roadmap')">
+        <div class="brand-icon">🏛️</div>
+        <div>
+          <div class="brand-title">Filosofía USAT • Unidad 2</div>
+          <span class="brand-subtitle">Metafísica, Causas & Teodicea</span>
         </div>
-    </header>
+      </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="app-main">
+      <!-- Pestañas de Navegación -->
+      <nav class="nav-pills">
+        <button class="nav-pill active" data-view="roadmap">🗺️ Ruta</button>
+        <button class="nav-pill" data-view="teoria">📖 Teoría Completa</button>
+        <button class="nav-pill" data-view="glosario">📚 Glosario</button>
+        <button class="nav-pill" data-view="flashcards">🗂️ Flashcards 3D</button>
+        <button class="nav-pill" data-view="emparejar">🧩 Emparejar</button>
+        <button class="nav-pill" data-view="mnemotecnias">🧠 Mnemotecnias</button>
+        <button class="nav-pill" data-view="examenes">📝 20 Exámenes</button>
+        <button class="nav-pill" data-view="errores">
+          🚨 Cuaderno de Errores <span class="badge-count" id="nav-mistakes-badge" style="display:none;">0</span>
+        </button>
+      </nav>
 
-        <!-- ==================== VISTA 1: TEORÍA POR MÓDULOS ==================== -->
-        <section id="view-teoria" class="view-panel active">
-            <div class="section-hero">
-                <div class="hero-text">
-                    <h2>Teoría Completa, Estructurada e Interactiva</h2>
-                    <p>Contenido íntegro extraído de las separatas, PPTs y el libro de Genara Castillo. Nada de resúmenes que omitan datos clave. Selecciona un tema para explorar sus conceptos con lectura por voz.</p>
-                </div>
-                <div class="search-bar-wrapper">
-                    <input type="text" id="theory-search-input" placeholder="🔍 Buscar concepto (ej. Ocio, Mayéutica, Noúmeno, UNESCO...)" />
-                </div>
+      <!-- Botones de Acción (Sonido y Modo Oscuro/Claro) -->
+      <div class="header-actions">
+        <button class="btn-icon" id="sound-toggle-btn" title="Activar/Silenciar Efectos de Audio">🔔</button>
+        <button class="btn-icon" id="theme-toggle-btn" title="Cambiar Tema Claro/Oscuro">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="main-wrapper">
+
+    <!-- BARRA RÁPIDA DE BÚSQUEDA Y ESTADÍSTICAS -->
+    <section class="quick-tools-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="universal-search-input" placeholder="Buscar concepto (ej: esse, causa formal, inmanencia, potencia)...">
+      </div>
+      <div class="quick-stats">
+        <div class="stat-chip" title="Tarjetas dominadas de 60">
+          <span>⭐ Dominadas:</span>
+          <strong id="stat-mastered-count">0/60</strong>
+        </div>
+        <div class="stat-chip" title="Exámenes realizados de 20">
+          <span>📝 Exámenes:</span>
+          <strong id="stat-exams-count">0/20</strong>
+        </div>
+        <div class="stat-chip" title="Errores acumulados pendientes de repaso">
+          <span>🚨 Errores a repasar:</span>
+          <strong id="stat-mistakes-count" style="color: var(--danger);">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         1. VISTA: RUTA / RECORRIDO GUIADO
+         ==================================================================== -->
+    <section class="view-panel active" id="view-roadmap">
+      <div class="section-header">
+        <h1 class="section-title">🗺️ Ruta de Aprendizaje Intensivo (Unidad 2)</h1>
+        <p class="section-desc">
+          Domina todo el material de las 4 separatas en orden pedagógico. Sin resúmenes vacíos: comprende los conceptos técnicos con analogías cotidianas y evalúate de inmediato.
+        </p>
+      </div>
+
+      <div class="roadmap-container" id="roadmap-steps-container">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         2. VISTA: TEORÍA COMPLETA ESTRUCTURADA (SIN RESUMIR)
+         ==================================================================== -->
+    <section class="view-panel" id="view-teoria">
+      <div class="section-header">
+        <h1 class="section-title">📖 Teoría Completa y Estructurada</h1>
+        <p class="section-desc">
+          Los 4 módulos con sus 24 capítulos íntegros. Cada capítulo incluye: Puntos clave de examen, Analogía en cristiano para entender a la primera, y el texto original de la separata.
+        </p>
+      </div>
+
+      <!-- Navegación por módulos -->
+      <div class="teoria-modules-nav" id="teoria-modules-nav">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+
+      <!-- Acordeón de capítulos -->
+      <div id="teoria-chapters-container">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3. VISTA: GLOSARIO FILOSÓFICO INTERACTIVO
+         ==================================================================== -->
+    <section class="view-panel" id="view-glosario">
+      <div class="section-header">
+        <h1 class="section-title">📚 Glosario de Términos Confusos</h1>
+        <p class="section-desc">
+          37 términos metafísicos explicados en 4 niveles: Definición técnica, explicación "en cristiano", ejemplo cotidiano de la vida real, y la trampa típica de examen.
+        </p>
+      </div>
+
+      <!-- Filtros por categoría -->
+      <div class="glosario-filters" id="glosario-filter-buttons">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+
+      <!-- Cuadrícula de tarjetas del glosario -->
+      <div class="glosario-grid" id="glosario-cards-grid">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         4. VISTA: FLASHCARDS 3D
+         ==================================================================== -->
+    <section class="view-panel" id="view-flashcards">
+      <div class="section-header">
+        <h1 class="section-title">🗂️ Flashcards de Memoria Activa (3D)</h1>
+        <p class="section-desc">
+          60 tarjetas con las preguntas y definiciones más repetidas en exámenes. Haz clic o presiona <strong>Espacio</strong> para voltear la tarjeta.
+        </p>
+      </div>
+
+      <div class="flashcards-container">
+        <!-- Barra de progreso y metadatos -->
+        <div class="flashcard-meta-bar">
+          <span id="fc-counter-label">Tarjeta 1 de 60</span>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <button class="filter-btn" onclick="window.FiloApp.shuffleFlashcards()">🔀 Mezclar</button>
+            <select class="filter-btn" onchange="window.FiloApp.filterFlashcards(this.value)" style="cursor: pointer;">
+              <option value="Todas">Todas las Separatas</option>
+              <option value="Separata 1">Separata 1 (Ente & Esse)</option>
+              <option value="Separata 2">Separata 2 (Substancia & Principios)</option>
+              <option value="Separata 3">Separata 3 (Causas & Trascendentales)</option>
+              <option value="Separata 4">Separata 4 (Dios & Vías)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flashcard-progress-track">
+          <div class="flashcard-progress-bar" id="fc-progress-fill"></div>
+        </div>
+
+        <!-- Tarjeta 3D -->
+        <div class="card-scene" onclick="window.FiloApp.flipFlashcard()">
+          <div class="card-inner" id="flashcard-inner">
+            <!-- Cara frontal -->
+            <div class="card-face card-face-front">
+              <div class="card-badge-row">
+                <span class="step-badge badge-blue" id="fc-badge-separata">Separata 1</span>
+                <span class="step-badge badge-gold" id="fc-badge-categoria">Concepto</span>
+              </div>
+              <div class="card-content-center">
+                <div class="card-prompt" id="fc-front-text">Cargando...</div>
+              </div>
+              <div class="card-hint-row">
+                <span>🔄 Clic o barra espaciadora para voltear</span>
+                <span id="fc-status-icon">⏳ En Estudio</span>
+              </div>
             </div>
 
-            <!-- Navegación lateral o píldoras por temas -->
-            <div class="topics-pill-nav" id="topics-pill-nav">
-                <!-- Se llena con JS según TEMAS -->
+            <!-- Cara trasera -->
+            <div class="card-face card-face-back">
+              <div class="card-badge-row">
+                <span class="step-badge badge-green">Respuesta & Explicación</span>
+              </div>
+              <div class="card-content-center">
+                <div class="card-answer" id="fc-back-text">Cargando...</div>
+              </div>
+              <div class="card-hint-row" id="fc-back-hint" style="color: var(--accent-gold);">
+                <!-- Mnemotecnia si existe -->
+              </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Contenedor del contenido del tema seleccionado -->
-            <div id="topic-detail-container" class="topic-detail-container">
-                <!-- Se renderiza con JS -->
+        <!-- Botones de autoevaluación -->
+        <div class="flashcard-eval-buttons">
+          <button class="btn-failed" onclick="window.FiloApp.markFlashcard(false)">
+            ❌ Aún me confunde
+          </button>
+          <button class="btn-mastered" onclick="window.FiloApp.markFlashcard(true)">
+            ✅ ¡Ya me lo sé!
+          </button>
+        </div>
+
+        <!-- Controles de navegación manual -->
+        <div class="flashcard-controls">
+          <button class="btn-secondary" onclick="window.FiloApp.prevFlashcard()">⬅️ Anterior</button>
+          <button class="btn-secondary" onclick="window.FiloApp.nextFlashcard()">Siguiente ➡️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. VISTA: MINIJUEGO DE EMPAREJAR (MATCHING GAME)
+         ==================================================================== -->
+    <section class="view-panel" id="view-emparejar">
+      <div class="section-header">
+        <h1 class="section-title">🧩 Minijuego: Emparejar Conceptos</h1>
+        <p class="section-desc">
+          Entrena tu mente uniendo el término filosófico con su significado o caso real. Haz clic en un elemento de la columna izquierda y luego en su pareja de la derecha.
+        </p>
+      </div>
+
+      <div class="match-game-container">
+        <!-- Navegación de niveles -->
+        <div class="glosario-filters" id="match-levels-nav" style="justify-content: center;">
+          <!-- Renderizado dinámico -->
+        </div>
+
+        <!-- Barra de estado del nivel -->
+        <div class="match-header-bar">
+          <div>
+            <h3 id="match-level-title" style="font-size: 1.1rem; font-weight: 700;">Nivel 1</h3>
+            <p id="match-level-desc" style="font-size: 0.85rem; color: var(--text-secondary);">Descripción...</p>
+          </div>
+          <div style="display: flex; gap: 1rem; font-weight: 700;">
+            <span id="match-score-display" style="color: var(--success);">Aciertos: 0 / 6</span>
+            <span id="match-errors-display" style="color: var(--danger);">Fallos: 0</span>
+          </div>
+        </div>
+
+        <!-- Columnas del juego -->
+        <div class="match-columns-grid">
+          <div class="match-col">
+            <div class="match-col-title">Término Filosófico</div>
+            <div id="match-col-left" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Renderizado dinámico -->
             </div>
-        </section>
-
-        <!-- ==================== VISTA 2: FLASHCARDS (TARJETITAS & TRAMPAS) ==================== -->
-        <section id="view-flashcards" class="view-panel">
-            <div class="section-hero">
-                <div class="hero-text">
-                    <h2>Tarjetitas de Memorización & Preguntas Trampa ⚡</h2>
-                    <p>50 tarjetas diseñadas para fijar conceptos fundamentales y detectar las típicas trampas de opción múltiple antes de que aparezcan en tu examen.</p>
-                </div>
-                <div class="fc-filter-group">
-                    <button class="filter-btn active" data-filter="all">Todas (50)</button>
-                    <button class="filter-btn" data-filter="trampa">Solo Trampas ⚠️</button>
-                    <button class="filter-btn" data-filter="concepto">Conceptos Clave 💡</button>
-                </div>
+          </div>
+          <div class="match-col">
+            <div class="match-col-title">Significado / Caso Real</div>
+            <div id="match-col-right" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Renderizado dinámico -->
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="flashcard-stage">
-                <div class="fc-counter-badge" id="fc-counter-badge">Tarjeta 1 de 50</div>
-                
-                <div class="card-3d-scene" id="card-3d-scene">
-                    <div class="card-3d-inner" id="card-3d-inner">
-                        <div class="card-face card-face-front">
-                            <div class="card-badge" id="card-badge-front">💡 Pregunta / Concepto</div>
-                            <div class="card-content-text" id="card-text-front">Cargando...</div>
-                            <div class="card-hint">Haz clic o presiona <b>ESPACIO</b> para voltear 🔄</div>
-                        </div>
-                        <div class="card-face card-face-back">
-                            <div class="card-badge" id="card-badge-back">✅ Respuesta & Explicación</div>
-                            <div class="card-content-text" id="card-text-back">Cargando...</div>
-                            <div class="card-hint">Haz clic de nuevo para volver al frente</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- ====================================================================
+         6. VISTA: MNEMOTECNIAS Y TRAMPAS DE EXAMEN
+         ==================================================================== -->
+    <section class="view-panel" id="view-mnemotecnias">
+      <div class="section-header">
+        <h1 class="section-title">🧠 Mnemotecnias y Trucos Anti-Trampa</h1>
+        <p class="section-desc">
+          Técnicas de memorización visual rápida, acrónimos para no olvidar listas y los 10 errores más comunes con los que los profesores intentan sorprender a los estudiantes.
+        </p>
+      </div>
 
-                <div class="fc-controls">
-                    <button class="btn-ctrl" id="btn-fc-prev" title="Anterior (Flecha izquierda)">⬅️ Anterior</button>
-                    <button class="btn-ctrl btn-primary" id="btn-fc-flip">🔄 Voltear Tarjeta</button>
-                    <button class="btn-ctrl" id="btn-fc-next" title="Siguiente (Flecha derecha)">Siguiente ➡️</button>
-                    <button class="btn-ctrl btn-random" id="btn-fc-random" title="Tarjeta al azar">🎲 Aleatoria</button>
-                </div>
-                <div class="keyboard-shortcuts-hint">
-                    Atajos de teclado: <code>←</code> Anterior | <code>Espacio</code> Voltear | <code>→</code> Siguiente
-                </div>
+      <div class="mnemo-sections-container">
+        <!-- Sección 1: Acrónimos -->
+        <div>
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-accent);">
+            🔑 Acrónimos Clave para el Examen
+          </h2>
+          <div class="mnemo-acronym-grid" id="mnemo-acronyms-grid">
+            <!-- Renderizado dinámico -->
+          </div>
+        </div>
+
+        <!-- Sección 2: Palacio de la Memoria -->
+        <div>
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; color: var(--accent-gold);">
+            🏛️ El Palacio de la Memoria: 4 Salas Temáticas
+          </h2>
+          <div class="palace-grid" id="mnemo-palace-grid">
+            <!-- Renderizado dinámico -->
+          </div>
+        </div>
+
+        <!-- Sección 3: Trampas de Examen -->
+        <div>
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; color: var(--danger);">
+            ⚠️ Los 10 Mandamientos Anti-Trampas
+          </h2>
+          <div class="traps-grid" id="mnemo-traps-grid">
+            <!-- Renderizado dinámico -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         7. VISTA: BANCO DE 20 EXÁMENES (400 PREGUNTAS ÚNICAS)
+         ==================================================================== -->
+    <section class="view-panel" id="view-examenes">
+      <!-- 7.1 HUB DE SELECCIÓN DE EXÁMENES -->
+      <div id="exams-hub-container">
+        <div class="section-header">
+          <h1 class="section-title">📝 Banco de 20 Exámenes (400 Preguntas)</h1>
+          <p class="section-desc">
+            Cada examen contiene 20 preguntas únicas para marcar. Las opciones han sido rigurosamente balanceadas en longitud para que no puedas adivinar la respuesta correcta por ser la más larga.
+          </p>
+        </div>
+
+        <div class="exams-grid" id="exams-cards-grid">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+      </div>
+
+      <!-- 7.2 RUNNER DEL EXAMEN ACTIVO -->
+      <div class="exam-runner" id="exam-runner-container">
+        <!-- Barra superior del examen -->
+        <div class="exam-top-bar">
+          <div>
+            <h2 id="exam-runner-title" style="font-size: 1.15rem; font-weight: 800;">Examen 1</h2>
+            <span id="q-current-number" style="font-size: 0.85rem; color: var(--text-secondary);">Pregunta 1 de 20</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="filter-btn" id="toggle-instant-feedback-btn" onclick="window.FiloApp.toggleInstantFeedback()">
+              ⚡ Feedback Inmediato: OFF
+            </button>
+            <div class="exam-timer" id="exam-timer-display">⏱️ 00:00</div>
+          </div>
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="exam-progress-bar-wrap" style="margin-bottom: 1.25rem;">
+          <div class="exam-progress-fill" id="exam-progress-fill"></div>
+        </div>
+
+        <!-- Cuadro de la pregunta -->
+        <div class="question-box">
+          <div class="question-meta-row">
+            <span class="question-num-tag" id="q-diff-badge">Media</span>
+            <button class="filter-btn" onclick="window.FiloApp.backToExamsHub()">✕ Salir del Examen</button>
+          </div>
+
+          <div class="question-text" id="q-text-content">Cargando pregunta...</div>
+
+          <div class="options-list" id="q-options-container">
+            <!-- Renderizado dinámico -->
+          </div>
+
+          <!-- Caja de feedback instantáneo (si está activado) -->
+          <div id="instant-explanation-box" class="didactic-box box-analogy" style="display: none; margin-top: 1.25rem;"></div>
+        </div>
+
+        <!-- Botones de navegación del examen -->
+        <div class="exam-nav-bar">
+          <button class="btn-secondary" id="btn-prev-q" onclick="window.FiloApp.prevQuestion()">
+            ⬅️ Anterior
+          </button>
+          <button class="btn-primary" id="btn-next-q" onclick="window.FiloApp.nextQuestion()">
+            Siguiente ➡️
+          </button>
+        </div>
+
+        <!-- Cuadrícula de salto rápido a cualquier pregunta -->
+        <div class="questions-grid-nav" id="questions-nav-dots">
+          <!-- Renderizado dinámico (1 a 20) -->
+        </div>
+      </div>
+
+      <!-- 7.3 PANTALLA DE RESULTADOS DEL EXAMEN -->
+      <div class="results-screen" id="exam-results-screen">
+        <div class="results-hero-card">
+          <div class="results-grade-circle" id="results-circle">18/20</div>
+          <h2 class="results-title" id="results-grade-title">¡Excelente Desempeño!</h2>
+          <p class="results-subtitle" id="results-grade-desc">Has demostrado un dominio sólido de la materia.</p>
+
+          <div class="results-stats-row">
+            <div class="result-stat-item">
+              <span class="result-stat-val" id="res-correct-val" style="color: var(--success);">18</span>
+              <span class="result-stat-lbl">Aciertos</span>
             </div>
-        </section>
-
-        <!-- ==================== VISTA 3: SIMULADORES DE EXAMEN ==================== -->
-        <section id="view-examenes" class="view-panel">
-            <div class="section-hero">
-                <div class="hero-text">
-                    <h2>20 Simuladores Oficiales • 400 Preguntas con Explicación</h2>
-                    <p>Cada examen evalúa 20 preguntas con alternativas múltiples. Al entregar tu prueba, verás en qué fallaste, cuál era la correcta y <strong>la explicación exacta</strong> del porqué.</p>
-                </div>
+            <div class="result-stat-item">
+              <span class="result-stat-val" id="res-wrong-val" style="color: var(--danger);">2</span>
+              <span class="result-stat-lbl">Errores</span>
             </div>
-
-            <!-- Selector de Exámenes en Cuadrícula -->
-            <div id="exam-catalog-view" class="exam-catalog-view">
-                <div class="catalog-header">
-                    <h3>Selecciona un Examen para Rendir:</h3>
-                    <span class="catalog-hint">Nota aprobatoria mínima: 14/20</span>
-                </div>
-                <div class="exam-grid" id="exam-grid">
-                    <!-- Se generan 20 tarjetas de examen dinámicamente -->
-                </div>
+            <div class="result-stat-item">
+              <span class="result-stat-val" id="res-time-val" style="color: var(--accent-gold);">12m 45s</span>
+              <span class="result-stat-lbl">Tiempo</span>
             </div>
+          </div>
 
-            <!-- Área de Rendición del Examen Activo -->
-            <div id="exam-active-view" class="exam-active-view" style="display: none;">
-                <div class="exam-topbar">
-                    <div>
-                        <button class="btn-back" id="btn-back-to-catalog">⬅️ Salir al Selector de Exámenes</button>
-                        <h2 id="active-exam-title">Examen #1</h2>
-                    </div>
-                    <div class="exam-progress-tracker">
-                        <span id="exam-answered-count">Respondidas: 0 / 20</span>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill" id="exam-progress-fill"></div>
-                        </div>
-                    </div>
-                </div>
+          <div style="display: flex; justify-content: center; gap: 1rem;">
+            <button class="btn-primary" onclick="window.FiloApp.backToExamsHub()">
+              📚 Ver Más Exámenes
+            </button>
+            <button class="btn-secondary" onclick="window.FiloApp.startExam(window.FiloApp.currentExamId || 1)">
+              🔄 Repetir Este Examen
+            </button>
+          </div>
+        </div>
 
-                <!-- Lista de preguntas -->
-                <div class="questions-list" id="questions-list">
-                    <!-- 20 preguntas inyectadas por JS -->
-                </div>
+        <!-- Lista detallada de errores con fundamentación teórica y analogía -->
+        <div class="mistakes-review-container" id="results-mistakes-list">
+          <!-- Renderizado dinámico -->
+        </div>
+      </div>
+    </section>
 
-                <!-- Barra inferior de entrega -->
-                <div class="exam-actions-bar">
-                    <button class="btn-submit-exam" id="btn-submit-exam">
-                        🚀 Entregar Examen y Ver Calificación con Explicaciones
-                    </button>
-                </div>
-            </div>
+    <!-- ====================================================================
+         8. VISTA: CUADERNO DE ERRORES ACUMULADOS
+         ==================================================================== -->
+    <section class="view-panel" id="view-errores">
+      <div class="section-header">
+        <h1 class="section-title">🚨 Cuaderno de Errores Acumulados</h1>
+        <p class="section-desc">
+          Aquí se guardan todas las preguntas en las que te has equivocado en cualquiera de los 20 exámenes. Cada una incluye la sección exacta de la separata, la fundamentación teórica completa y una analogía cotidiana.
+        </p>
+      </div>
 
-            <!-- Área de Resultados y Retroalimentación Detallada -->
-            <div id="exam-results-view" class="exam-results-view" style="display: none;">
-                <div class="result-score-card" id="result-score-card">
-                    <!-- Inyectado por JS -->
-                </div>
-                
-                <div class="result-controls">
-                    <button class="btn-ctrl btn-primary" id="btn-retry-same-exam">🔄 Reintentar este Examen</button>
-                    <button class="btn-ctrl" id="btn-goto-another-exam">📋 Elegir otro de los 20 Exámenes</button>
-                    <button class="btn-ctrl btn-secondary" id="btn-filter-only-errors">❌ Ver solo preguntas que fallé</button>
-                    <button class="btn-ctrl btn-secondary" id="btn-show-all-review" style="display:none;">👁️ Ver todas las preguntas</button>
-                </div>
+      <div id="global-mistakes-container">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
 
-                <h3 class="review-title">Revisión Detallada con Explicaciones:</h3>
-                <div class="review-questions-list" id="review-questions-list">
-                    <!-- Preguntas con colores verde/rojo y explicación -->
-                </div>
-            </div>
-        </section>
+  </main>
 
-        <!-- ==================== VISTA 4: VIDEOTECA ==================== -->
-        <section id="view-videos" class="view-panel">
-            <div class="section-hero">
-                <div class="hero-text">
-                    <h2>Videoteca de las Sesiones 1 a 4 🎬</h2>
-                    <p>Todos los enlaces y recursos audiovisuales incluidos en tus diapositivas de clase (Dra. Ruth Cotrina) organizados por sesión temática.</p>
-                </div>
-            </div>
+  <!-- MODAL FLOTANTE (Para profundizaciones rápidas) -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      <div id="modal-body-content"></div>
+    </div>
+  </div>
 
-            <div class="videos-grid">
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 2</span>
-                        <h4>Actitud Filosófica vs. Actitud Natural</h4>
-                    </div>
-                    <p>Distingue cómo opera la actitud cotidiana y por qué se requiere del ocio para filosofar.</p>
-                    <a href="https://www.youtube.com/watch?v=svWAgT4Ih5U" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                        ▶️ Ver en YouTube (Video 1)
-                    </a>
-                </div>
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <p>Filosofía USAT • Unidad 2: Metafísica, Estructura del Ente, Causas & Teodicea</p>
+    <p style="margin-top: 0.25rem; font-size: 0.75rem;">
+      Material transcrito e integrado sin resúmenes a partir de las 4 separatas oficiales (Joseph De Torre, 1990). Diseñado para aprendizaje acelerado en 2 horas.
+    </p>
+  </footer>
 
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 2</span>
-                        <h4>Caso de Pensamiento Crítico</h4>
-                    </div>
-                    <p>Análisis de situaciones cotidianas para reconocer los 4 elementos de la actitud filosófica.</p>
-                    <a href="https://www.youtube.com/watch?v=2p1B7orWDUE" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                        ▶️ Ver en YouTube (Video 2)
-                    </a>
-                </div>
+  <!-- CARGA DE SCRIPTS DE DATOS Y MOTOR -->
+  <script src="glosario.js"></script>
+  <script src="teoria.js"></script>
+  <script src="flashcards.js"></script>
+  <script src="mnemotecnias.js"></script>
+  <script src="emparejar.js"></script>
+  <script src="preguntas.js"></script>
+  <script src="app.js"></script>
 
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 3</span>
-                        <h4>¿Dónde nació la Filosofía? (Mileto, Grecia)</h4>
-                    </div>
-                    <p>Explicación del origen geográfico, histórico y cultural en las colonias jónicas en el siglo VI a.C.</p>
-                    <a href="https://www.youtube.com/watch?v=y1z8pBETpqo" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                        ▶️ Ver en YouTube (Video 3)
-                    </a>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 3</span>
-                        <h4>El Paso del Mito al Logos</h4>
-                    </div>
-                    <p>Cómo la razón griega transformó las explicaciones sobrenaturales en leyes racionales y universales.</p>
-                    <a href="https://www.youtube.com/watch?v=ASYA0nmoC8g" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                        ▶️ Ver en YouTube (Video 4)
-                    </a>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 3</span>
-                        <h4>Los Mitos: Características, Tipos y Función</h4>
-                    </div>
-                    <p>El mito no desapareció: la filosofía lo elevó a una categoría racional.</p>
-                    <div class="multi-links">
-                        <a href="https://www.youtube.com/watch?v=jKxfJ1ORGkc" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                            ▶️ Parte 1: Naturaleza del Mito
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=4a2FPpDzcrs" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                            ▶️ Parte 2: Función y Tipos
-                        </a>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 4</span>
-                        <h4>Naturaleza de la Filosofía & Sentido</h4>
-                    </div>
-                    <p>Definición esencial: conocimiento de las causas últimas a la luz de la razón.</p>
-                    <a href="https://www.youtube.com/watch?v=77QPhexS86c" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                        ▶️ Ver en YouTube (Video 5)
-                    </a>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-card-header">
-                        <span class="video-tag">Sesión 4</span>
-                        <h4>Ramas de la Filosofía</h4>
-                    </div>
-                    <p>Metafísica, Gnoseología, Ética, Lógica, Filosofía de la Naturaleza y Filosofía Práctica.</p>
-                    <a href="https://www.youtube.com/watch?v=IlkoSf8hiy4" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-                        ▶️ Ver en YouTube (Video 6)
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="main-footer">
-        <p>FiloMaster • Plataforma de Aprendizaje Activo basada en los materiales de Filosofía I (USAT).</p>
-        <p class="footer-sub">Diseñado para estudiar con efectividad: teoría íntegra sin pérdidas, tarjetas interactivas y 20 simulacros con retroalimentación inmediata.</p>
-    </footer>
-
-    <!-- SCRIPTS -->
-    <script src="data.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>

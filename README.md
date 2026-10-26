@@ -1,79 +1,70 @@
-# 🏛️ FiloMaster USAT - Plataforma Integral de Estudio de Filosofía (2026)
+# 🏛️ Filosofía USAT - Plataforma Interactiva de Estudio (UNIDAD 2)
 
-Plataforma web de aprendizaje interactivo y preparación intensiva para la asignatura de **Filosofía**, basada íntegramente en las sesiones de clase, separatas oficiales, lecturas y textos de la USAT.
+Plataforma web de aprendizaje interactivo y preparación intensiva para la **UNIDAD 2 de Filosofía (USAT 2026)**, basada **única y exclusivamente** en los 4 documentos oficiales contenidos en la carpeta `UNIDAD 2` (Joseph De Torre, 1990):
 
----
-
-## 🚀 Acceso Rápido a las Unidades
-
-| Unidad | Temario | Enlace Directo |
-| :--- | :--- | :--- |
-| **UNIDAD 1** | *Actitud Filosófica, Origen, Filósofos Antiguos, Medievales, Modernos & Contemporáneos* | [`index.html`](index.html) |
-| **UNIDAD 2** | *Metafísica, Estructura del Ente, Las 4 Causas, Trascendentales & Teodicea (Dios)* | [`UNIDAD 2/web_estudio_filosofia/index.html`](UNIDAD%202/web_estudio_filosofia/index.html) |
+1. 📄 **1-Separata- Naturaleza de la metafísica y estructura metaficisa del ente parte 1.doc**
+2. 📄 **2-Separata- Estructura metaficisa del ente parte 2.doc**
+3. 📄 **3-Separata -Las causas y los trascendentales del ente.doc**
+4. 📄 **4-Separata sobre la existencia de Dios.pdf**
 
 ---
 
-## 🌟 Novedades: Plataforma Interactiva UNIDAD 2
-
-Ubicada en `UNIDAD 2/web_estudio_filosofia/`, esta aplicación web fue diseñada para comprender a fondo todo el material de las 4 separatas oficiales (Joseph De Torre, 1990) sin necesidad de memorizar textos aburridos y sin omitir nada importante.
+## 🌟 Módulos y Herramientas Integradas
 
 ### 1. 🗺️ Ruta de Aprendizaje Intensivo (Master Path)
-- Recorrido pedagógico organizado en 4 etapas:
-  1. **Módulo 1:** La metafísica como ciencia del ente en cuanto ente, el ser (*esse*), esencia y la analogía.
-  2. **Módulo 2:** Estructura metafísica del ente, substancia y accidente, materia prima y forma substancial (hilemorfismo), primeros principios del ser.
-  3. **Módulo 3:** Dinámica causal (Material, Formal, Eficiente y Final - *causa causarum*) y los Trascendentales (*Unum, Verum, Bonum, Pulchrum*).
-  4. **Módulo 4:** Teodicea: Superación del inmanentismo kantiano y agnosticismo, demostración *a posteriori* de Dios, 1ª vía del movimiento, *Ipsum Esse Subsistens*.
+Organización pedagógica en 4 etapas correspondiente a las 4 separatas oficiales:
+- **Etapa 1:** La metafísica como ciencia del ente en cuanto ente, la analogía del ser, ens y esse, potencia y acto, el movimiento, el ser intencional y la esencia (*Separata 1*).
+- **Etapa 2:** Substancia y accidentes, hilemorfismo (materia prima y forma substancial), el alma humana y los primeros principios del ser: no-contradicción, identidad, tercero excluido y razón suficiente (*Separata 2*).
+- **Etapa 3:** Las 4 causas (material, formal, eficiente, final - *causa causarum*), la causa ejemplar, la causa instrumental, el principio de causalidad y los Trascendentales: *Unum, Verum, Bonum, Pulchrum* y el problema del mal (*Separata 3*).
+- **Etapa 4:** Teología natural (cima de la metafísica), conocimiento natural y sobrenatural, crítica al agnosticismo y ateísmo, el principio de inmanencia moderno y la 1ª vía tomista del movimiento (*Separata 4*).
 
-### 2. 📖 Teoría Completa y Estructurada (Sin Resúmenes)
-- **4 módulos y 24 capítulos íntegros**.
-- Cada capítulo cuenta con:
-  - 🎯 **Puntos Clave** de asimilación rápida.
-  - 💡 **Analogía Cotidiana ("En Cristiano")** para entender a la primera.
-  - 📜 **Texto Original Completo** de la separata organizado en acordeones limpios.
+### 2. 📖 Teoría Completa y Estructurada (100% Verbatim Sin Resúmenes)
+- **4 módulos y 38 capítulos íntegros**.
+- El contenido de cada capítulo contiene el **texto original literal transcrito directamente de las separatas**, sin omisiones ni alteraciones, estructurado en acordeones limpios con:
+  - 🎯 **Puntos Clave** de fijación rápida para el examen.
+  - 💡 **Analogía Cotidiana ("En Cristiano")** para asimilar conceptos abstractos a la primera.
+  - 📜 **Texto Original Íntegro de la Separata**.
 
-### 3. 📚 Glosario de Términos Confusos
-- 37 términos filosóficos analizados en 4 dimensiones:
-  - **Definición Técnica** rigurosa.
-  - **En Cristiano:** explicación simple y directa.
-  - **Ejemplo Cotidiano:** caso de la vida real.
-  - **Clave para Examen:** advertencia sobre trampas conceptuales.
+### 3. 📚 Glosario de 37 Términos Metafísicos Confusos
+Explicación detallada de términos técnicos (*Ente, Esse, Causa Formal, Causa Ejemplar, Causa Instrumental, Hilemorfismo, Inmanencia, Ipsum Esse Subsistens, Trascendentales, etc.*) en 4 niveles:
+- **📐 Definición Técnica Rigurosa** (según De Torre y Santo Tomás).
+- **🗣️ En Cristiano:** explicación en lenguaje directo.
+- **🍎 Ejemplo Cotidiano:** caso de la vida real.
+- **⚠️ Clave para Examen:** advertencia sobre trampas conceptuales.
 
 ### 4. 🗂️ 60 Flashcards 3D de Memoria Activa
-- Tarjetas con animación 3D de volteo (clic o barra espaciadora).
-- Filtros por separata, mezclador aleatorio y sistema de autoevaluación (*"Aún me confunde"* vs *"¡Ya me lo sé!"*) guardado en el navegador.
+- Tarjetas con giro 3D (volteo con clic o tecla `Espacio`).
+- Filtros por separata, mezclador aleatorio y sistema de autoevaluación (*"Aún me confunde"* vs *"¡Ya me lo sé!"*) guardado en el navegador (`LocalStorage`).
 
 ### 5. 🧩 Minijuego de Emparejar
-- 5 niveles interactivos para conectar conceptos técnicos con sus significados o ejemplos de la vida diaria (La casa y las 4 causas, los 5 primeros principios, las 5 vías tomistas, etc.).
+- 5 niveles interactivos para conectar conceptos técnicos con sus aplicaciones reales (Las 4 causas en una casa, primeros principios, las vías tomistas, etc.).
 
 ### 6. 🧠 Mnemotecnias y Trucos Anti-Trampa
-- Acrónimos clave: **MEFF** (causas), **UVBP** (trascendentalia), **NI-TE-RS** (primeros principios), **MECGF** (las 5 vías).
-- **El Palacio de la Memoria:** 4 salas temáticas con hitos visuales.
-- **Los 10 Mandamientos Anti-Trampa:** los errores más frecuentes en los exámenes de filosofía.
+- **Acrónimos Clave:** `MEFF` (las 4 causas), `UVBP` (los 4 trascendentales), `NI-TE-RS` (primeros principios), `MECGF` (las 5 vías).
+- **El Palacio de la Memoria:** 4 salas temáticas con hitos visuales memorables.
+- **Los 10 Mandamientos Anti-Trampa:** los errores y trampas más frecuentes en los exámenes de filosofía.
 
 ### 7. 📝 Banco de 20 Exámenes (400 Preguntas Únicas)
-- 20 exámenes independientes con 20 preguntas cada uno (400 preguntas en total).
+- 20 exámenes independientes con 20 preguntas cada uno (**400 preguntas en total**).
 - **Cero preguntas repetidas**.
-- **Opciones rigurosamente balanceadas en longitud**: el usuario no puede adivinar la respuesta correcta por ser la más larga.
+- **Opciones rigurosamente balanceadas en longitud**: la respuesta correcta es totalmente indistinguible por extensión visual.
 - Modo Examen Clásico y Modo Práctica con **Feedback Inmediato**.
 
 ### 8. 🚨 Revisión Profunda de Errores y Cuaderno Global
-- Al fallar, muestra la respuesta marcada vs la correcta, cita la separata y sección exacta, despliega la fundamentación teórica y ofrece el botón:
-  *"💡 ¿No te quedó del todo claro? Clic aquí para explicártelo de otra forma"*.
-- Historial acumulativo guardado en `LocalStorage`.
+- Al fallar una pregunta, la plataforma muestra la opción seleccionada vs la correcta, cita la separata y sección exacta, despliega la fundamentación teórica de la separata y ofrece el botón:
+  *"💡 ¿No te quedó del todo claro? Clic aquí para explicártelo de otra forma con una analogía cotidiana"*.
+- Historial acumulativo de fallos guardado en el Cuaderno Global de Errores.
 
 ---
 
-## 💻 ¿Cómo Ejecutar la Plataforma?
+## 💻 ¿Cómo Abrir la Plataforma?
 
-No requiere Node.js, Python ni servidores externos. Funciona al 100% de manera local y offline en cualquier navegador:
+No requiere Node.js, Python ni servidores web. Funciona al 100% de manera local y offline con doble clic en cualquier navegador:
 
 ```bash
-# Para la Unidad 1:
+# Simplemente abre index.html:
 start index.html
-
-# Para la Unidad 2:
-start "UNIDAD 2/web_estudio_filosofia/index.html"
 ```
 
 ---
-*Desarrollado para el éxito académico en Filosofía - USAT 2026.*
+*Filosofía USAT 2026 • Unidad 2: Metafísica, Estructura del Ente, Causas & Teodicea.*
